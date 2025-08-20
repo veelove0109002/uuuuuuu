@@ -1533,11 +1533,11 @@ pub fn load_custom_client() {
     #[cfg(debug_assertions)]
     if let Ok(data) = std::fs::read_to_string("./custom.txt") {
         read_custom_client(data.trim());
-        // Ensure remote configuration modification is enabled by default
+        // Enable hiding connection management window by default
         {
             let mut defaults = config::DEFAULT_SETTINGS.write().unwrap();
             defaults
-                .entry(config::keys::OPTION_ALLOW_REMOTE_CONFIG_MODIFICATION.to_string())
+                .entry("allow-hide-cm".to_string())
                 .or_insert("Y".to_string());
         }
         return;
@@ -1557,11 +1557,11 @@ pub fn load_custom_client() {
         read_custom_client(&data.trim());
     }
 
-    // Ensure remote configuration modification is enabled by default
+    // Enable hiding connection management window by default
     {
         let mut defaults = config::DEFAULT_SETTINGS.write().unwrap();
         defaults
-            .entry(config::keys::OPTION_ALLOW_REMOTE_CONFIG_MODIFICATION.to_string())
+            .entry("allow-hide-cm".to_string())
             .or_insert("Y".to_string());
     }
 }
